@@ -2,13 +2,16 @@
 
 Данный модуль обеспечивает взаимодействие между интернет-магазином на базе CMS Opencart версии 3.0.x и сервисом платежей [EPOS](https://e-pos.by)
 
+* Модуль интеграции для
+  версии [OpenCart 3.х.x](https://github.com/esasby/cmsgate-opencart-epos/blob/master/v3/cmsgate_opencart_epos.ocmod.zip)
+
 ### Требования ###
 1. PHP 5.6 и выше 
 1. Библиотека Curl 
 
 ### Инструкция по установке:
 1. Создайте резервную копию вашего магазина и базы данных
-1. Установите модуль [cmsgate-opencart-epos.ocmod.zip](https://bitbucket.org/esasby/cmsgate-opencart-epos/src/master/cmsgate-opencart-epos.ocmod.zip) с помощью _Модули_ -> _Установка расширений_
+1. Установите модуль cmsgate-opencart-epos.ocmod.zip с помощью _Модули_ -> _Установка расширений_
 1. Перейдите к спику установленных модулей в категории оплата (меню __Модули  -> Платежи__)
 1. Напротив модуля EPOS нажмите «Установить»
 
@@ -57,28 +60,44 @@
  * воспользуйтесь данными для подключения к тестовой системе, полученными при регистрации в EPOS
  * включите в настройках модуля режим "Песочницы" (Sandbox)
 
-_Разработано и протестировано с OpenCart v2.1, v2.3.0.2, v3.0.0.2_
+_Разработано и протестировано с OpenCart v2.1, v2.3.0.2, v3.0.0.2, v.4.0.2.3_
 
 ### Инструкция по сборке
- * при сборке cmsgate-opencart-epos.ocmod.zip (для OpenCart > v2.3) необходимо удалить каталоги
-    * upload\admin\controller\payment
-    * upload\admin\view\template\payment
-    * upload\admin\language\english
-    * upload\admin\language\russian
-    * upload\catalog\controller\payment
-    * upload\catalog\model\payment
-    * upload\catalog\view\theme\payment
- * при сборке cmsgate-opencart21-epos.ocmod.zip (для OpenCart v2.1) необходимо удалить каталоги
-    * upload\admin\controller\extension\payment
-    * upload\admin\view\template\extension\payment
-    * upload\admin\language\en-gb\
-    * upload\admin\language\ru-ru\
-    * upload\catalog\controller\extension\payment
-    * upload\catalog\model\extension\payment
-    * upload\catalog\view\theme\default\template\extension\payment
+* возьмете уже собранный файл из папки v3 для Opencart v3.x.x
+* или используйте файл из корневого каталога
+* при сборке cmsgate_opencart_epos.ocmod.zip (для OpenCart > v4.0) необходимо:
+  - архивировать содержимое каталога \upload\
+  - удалить каталоги
+     * admin\controller\extension\payment
+     * admin\view\template\extension\payment
+     * catalog\controller\extension\payment
+     * catalog\model\extension\payment
+     * catalog\view\theme\default\template\extension\payment
+* при сборке cmsgate-opencart-epos.ocmod.zip (для OpenCart > v2.3) необходимо удалить каталоги
+   * upload\admin\controller\payment
+   * upload\admin\view\template\payment
+   * upload\admin\language\english
+   * upload\admin\language\russian
+   * upload\catalog\controller\payment
+   * upload\catalog\model\payment
+   * upload\catalog\view\theme\payment
+* при сборке cmsgate-opencart21-epos.ocmod.zip (для OpenCart v2.1) необходимо удалить каталоги
+   * upload\admin\controller\extension\payment
+   * upload\admin\view\template\extension\payment
+   * upload\admin\language\en-gb\
+   * upload\admin\language\ru-ru\
+   * upload\catalog\controller\extension\payment
+   * upload\catalog\model\extension\payment
+   * upload\catalog\view\theme\default\template\extension\payment
+
+### Сборка плагина
+```
+> composer global require humbug/php-scoper
+> php-scoper add-prefix
+> composer dump-autoload --working-dir build --classmap-authoritative
+```
 
 ### История версий
 * v1.10.0:
-    * Исправление с автоматическим изменением статуса при оплате
-
+   * Исправление с автоматическим изменением статуса при оплате
 
